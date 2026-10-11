@@ -1,0 +1,16 @@
+Vbb = out.VB12.Data;
+Vp  = 0.5 * Vbb + 0.7;
+Ve  = out.VE.Data;
+t   = out.tout;
+
+
+firing_idx = find(Ve >= Vp, 1, 'first');
+t_fire     = t(firing_idx);
+
+% Convert time to angle (degrees)
+f     = 50;              
+omega = 2 * pi * f;
+firing_angle_rad = omega * t_fire;
+firing_angle_deg = rad2deg(firing_angle_rad);
+
+fprintf('Firing angle = %.2f degrees\n', firing_angle_deg);
